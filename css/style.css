@@ -1,0 +1,167 @@
+/*
+Create mixin for :before/:after pseudo element support;
+*zoom: expression(
+	this.runtimeStyle.zoom = "1",
+	this.appendChild( document.createElement("small") ).className="ie-before",
+	this.appendChild( document.createElement("small") ).className="ie-after"
+);
+
+// USAGE:
+&:before, .ie-before {}
+&:after, .ie-after {}
+*/
+.clearfix:before, .thumbs:before,
+.clearfix:after,
+.thumbs:after {
+  content: "";
+  display: table; }
+
+.clearfix:after, .thumbs:after {
+  clear: both; }
+
+.clearfix, .thumbs {
+  *zoom: 1; }
+
+.hide {
+  display: none; }
+
+.show {
+  display: block;
+  visibility: visible; }
+
+.hidden {
+  position: absolute !important;
+  z-index: 999;
+  top: -999em;
+  left: -999em;
+  height: auto;
+  display: block; }
+
+.center {
+  text-align: center; }
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: top; }
+
+article, aside, details, figcaption, figure, footer,
+header, hgroup, nav, section, summary {
+  display: block; }
+
+audio, canvas, video {
+  display: -moz-inline-stack;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: top;
+  margin-right: -4px; }
+
+audio:not([controls]), [hidden] {
+  display: none; }
+
+a:focus {
+  outline: none; }
+
+nav ul,
+nav ol {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+img {
+  border: 0;
+  max-width: 100%;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0; }
+
+input[type="radio"] {
+  vertical-align: text-bottom; }
+
+input[type="checkbox"] {
+  vertical-align: text-bottom; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  cursor: default; }
+
+a, button, input[type="submit"] {
+  cursor: pointer; }
+
+*, *:after, *:before {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box; }
+
+/* PAGE styles
+==================================================================================================== */
+html, body {
+  height: 100%; }
+
+body {
+  overflow-x: hidden;
+  font: normal 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #555;
+  background: #FFF; }
+
+header {
+  padding: 2em;
+  text-align: center; }
+  header h1 {
+    font-size: 2em;
+    font-weight: bold; }
+  header h2 {
+    padding: 0.5em 0; }
+    header h2 a {
+      color: #B83F2B;
+      text-decoration: none; }
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1em 2em 3em;
+  background: #FFF; }
+
+.thumbs {
+  list-style: none;
+  margin: 0; }
+  .thumbs li {
+    display: block;
+    float: left;
+    margin-bottom: 1em;
+    width: 100%; }
+    .thumbs li img {
+      display: block;
+      margin: 0 auto; }
+    @media all and (min-width: 480px) {
+      .thumbs li {
+        width: auto; }
+        .thumbs li img {
+          max-width: 100%;
+          margin: 0 1em; } }

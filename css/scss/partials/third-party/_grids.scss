@@ -1,0 +1,186 @@
+/* CSS Wizardry Grids (https://github.com/csswizardry/csswizardry-grids);
+==================================================================================================== */
+
+// $VARIABLES
+// ---------------------------------------------------------------------------
+
+// Set the spacing between your grid items.
+$gutter: 10px;
+
+// Would you like Sass’s silent classes, or regular CSS classes?
+$use-silent-classes: true;
+
+// Is the site responsive to multiple device screens?
+$responsive: true !default;
+
+// Responsiveness for widescreen/high resolution desktop monitors and beyond?
+$responsive-extra:  true !default;
+
+// Responsive push and pull produce a LOT of code, only turn them on if you definitely need them.
+$responsive-push:   true !default;
+$responsive-pull:   true !default;
+
+// At which point should lap and desk breakpoints kick in?
+$lap-start: 481px !default;
+$desk-start: 1024px !default;
+$desk-wide-start: 1200px !default;
+
+
+// $mobile: null;
+// $tablet: null;
+// $portable: null;
+// $desk: null;
+// $desk-wide: null;
+
+// Do not edit the following variables.
+// ---------------------------------------------------------------------------
+$class-type:            unquote(".");
+
+@if $use-silent-classes == true {
+	$class-type: unquote("%");
+}
+
+// $GRID SETUP
+// ---------------------------------------------------------------------------
+
+// 1. Allow the grid system to be used on lists.
+// 2. Remove any margins and paddings that might affect the grid system.
+// 3. Apply a negative `margin-left` to negate the columns’ gutters.
+
+#{$class-type}grid {
+	list-style: none;                // [1]
+	margin: 0;                       // [2]
+	padding: 0;                      // [2]
+	margin-left: -$gutter;           // [3]
+	*zoom: 1;
+
+	&:before, &:after {
+		content: " ";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+#{$class-type}column {
+	display: block;
+	float: left;
+	padding-left: $gutter;
+}
+
+// $WIDTHS
+// ---------------------------------------------------------------------------
+
+// These next bits get worked out for you.
+$palm-end: $lap-start - 1px;
+$lap-end: $desk-start - 1px;
+
+
+// Create our widths, prefixed by the specified namespace.
+@mixin grid-setup($namespace:""){
+
+	// ~~~~~ Whole ~~~~~~~~~~~~~~~~~~~~
+	#{$class-type}#{$namespace}one-whole			{ width: 100%; }
+
+	// ~~~~~ Halves ~~~~~~~~~~~~~~~~~~~~
+	#{$class-type}#{$namespace}one-half				{ width: 50%; }
+
+	// ~~~~~ Thirds ~~~~~~~~~~~~~~~~~~~~
+	#{$class-type}#{$namespace}one-third			{ width: 33.333%; }
+	#{$class-type}#{$namespace}two-thirds			{ width: 66.666%; }
+
+	// ~~~~~ Quarters ~~~~~~~~~~~~~~~~~~~~
+	#{$class-type}#{$namespace}one-quarter			{ width: 25%; }
+	#{$class-type}#{$namespace}two-quarters			{ @extend #{$class-type}#{$namespace}one-half; }
+	#{$class-type}#{$namespace}three-quarters		{ width: 75%; }
+
+	// ~~~~~ Fifths ~~~~~~~~~~~~~~~~~~~~
+	#{$class-type}#{$namespace}one-fifth			{ width: 20%; }
+	#{$class-type}#{$namespace}two-fifths			{ width: 40%; }
+	#{$class-type}#{$namespace}three-fifths			{ width: 60%; }
+	#{$class-type}#{$namespace}four-fifths			{ width: 80%; }
+
+	// ~~~~~ Sixths ~~~~~
+	#{$class-type}#{$namespace}one-sixth			{ width: 16.666%; }
+	#{$class-type}#{$namespace}two-sixths			{ @extend #{$class-type}#{$namespace}one-third; }
+	#{$class-type}#{$namespace}three-sixths			{ @extend #{$class-type}#{$namespace}one-half; }
+	#{$class-type}#{$namespace}four-sixths			{ @extend #{$class-type}#{$namespace}two-thirds; }
+	#{$class-type}#{$namespace}five-sixths			{ width: 83.333%; }
+
+	// ~~~~~ Eighths ~~~~~
+	#{$class-type}#{$namespace}one-eighth			{ width: 12.5%; }
+	#{$class-type}#{$namespace}two-eighths			{ @extend #{$class-type}#{$namespace}one-quarter; }
+	#{$class-type}#{$namespace}three-eighths		{ width: 37.5%; }
+	#{$class-type}#{$namespace}four-eighths			{ @extend #{$class-type}#{$namespace}one-half; }
+	#{$class-type}#{$namespace}five-eighths			{ width: 62.5%; }
+	#{$class-type}#{$namespace}six-eighths			{ @extend #{$class-type}#{$namespace}three-quarters; }
+	#{$class-type}#{$namespace}seven-eighths		{ width: 87.5%; }
+
+	// ~~~~~ Tenths ~~~~~
+	#{$class-type}#{$namespace}one-tenth			{ width: 10%; }
+	#{$class-type}#{$namespace}two-tenths			{ @extend #{$class-type}#{$namespace}one-fifth; }
+	#{$class-type}#{$namespace}three-tenths			{ width: 30%; }
+	#{$class-type}#{$namespace}four-tenths			{ @extend #{$class-type}#{$namespace}two-fifths; }
+	#{$class-type}#{$namespace}five-tenths			{ @extend #{$class-type}#{$namespace}one-half; }
+	#{$class-type}#{$namespace}six-tenths			{ @extend #{$class-type}#{$namespace}three-fifths; }
+	#{$class-type}#{$namespace}seven-tenths			{ width: 70%; }
+	#{$class-type}#{$namespace}eight-tenths			{ @extend #{$class-type}#{$namespace}four-fifths; }
+	#{$class-type}#{$namespace}nine-tenths			{ width: 90%; }
+
+	// ~~~~~ Twelfths ~~~~~
+	#{$class-type}#{$namespace}one-twelfth			{ width: 8.333%; }
+	#{$class-type}#{$namespace}two-twelfths			{ @extend #{$class-type}#{$namespace}one-sixth; }
+	#{$class-type}#{$namespace}three-twelfths		{ @extend #{$class-type}#{$namespace}one-quarter; }
+	#{$class-type}#{$namespace}four-twelfths		{ @extend #{$class-type}#{$namespace}one-third; }
+	#{$class-type}#{$namespace}five-twelfths		{ width: 41.666% }
+	#{$class-type}#{$namespace}six-twelfths			{ @extend #{$class-type}#{$namespace}one-half; }
+	#{$class-type}#{$namespace}seven-twelfths		{ width: 58.333%; }
+	#{$class-type}#{$namespace}eight-twelfths		{ @extend #{$class-type}#{$namespace}two-thirds; }
+	#{$class-type}#{$namespace}nine-twelfths		{ @extend #{$class-type}#{$namespace}three-quarters; }
+	#{$class-type}#{$namespace}ten-twelfths			{ @extend #{$class-type}#{$namespace}five-sixths; }
+	#{$class-type}#{$namespace}eleven-twelfths		{ width: 91.666%; }
+
+}
+
+// ---------------------------------------------------------------------------
+
+@if $responsive == true {
+
+@include grid-setup();
+
+// Our breakpoint specific widths classes.
+// ---------------------------------------------------------------------------
+@media only screen and (max-width:$palm-end){
+	@include grid-setup("palm-");
+}
+
+@media only screen and (min-width:$lap-start) and (max-width:$lap-end){
+	@include grid-setup("lap-");
+}
+
+@media only screen and (max-width:$lap-end){
+	@include grid-setup("portable-");
+}
+
+@media only screen and (min-width:$desk-start){
+	@include grid-setup("desk-");
+}
+
+@if $responsive-extra == true {
+
+@media only screen and (min-width: $desk-wide-start){
+    @include grid-setup("deskwide-");
+}
+
+} // end if($responsive-extra);
+
+} // end if($responsive);
+
+
+// Additional classes to reorder DOM elements
+// ---------------------------------------------------------------------------
+@import "grids-push";
+@import "grids-pull";
+
